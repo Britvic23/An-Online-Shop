@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Register</h2>
+<form action="{{ url_for('register') }}" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" autocomplete="username" required>
+    <br>
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" autocomplete="email" required>
+    <br>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" autocomplete="new-password" required>
+    <br>
+    <button type="submit">Register</button>
+</form>
+<a href="{{ url_for('login') }}">Already have an account? Login</a>
+{% endblock %}
+
+cart.html
+{% extends 'layout.html' %}
+{% block content %}
+<h1> Your Cart</h1>
+<ul>
+    {% for item in items %}
+    <li>{{ item.product.name }} - {{ item.quantity }} x ${{ item.product.price }}</li>
+    {% endfor %}
+</ul>
+<form action="{{ url_for('checkout') }}" method="POST">
+    <button type="submit" class="checkout-btn">Proceed to Checkout</button>
+</form>
+{% endblock %}
